@@ -19,6 +19,9 @@
     "name": "Kakhaber Bazerashvili",
     "email": "kaxabernet@gmail.com"
   },
+  "repository": {
+    "url": "https://github.com/karaxuna/parse-lastname"
+  },
   "license": "ISC",
   "devDependencies": {
     "jest": "^30.2.0"
