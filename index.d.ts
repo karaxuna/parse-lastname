@@ -26,6 +26,6 @@ export interface ParsedLastName {
  * parseLastName('Williams'); // { lastName: 'Williams', suffix: null }
  * ```
  */
-declare function parseLastName(lastName: string): ParsedLastName;
+declare function parseLastName(lastName: string | null | undefined): ParsedLastName;
 
 export { parseLastName };
