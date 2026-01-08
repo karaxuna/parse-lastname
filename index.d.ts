@@ -28,4 +28,4 @@ export interface ParsedLastName {
  */
 declare function parseLastName(lastName: string): ParsedLastName;
 
-export = parseLastName;
+export { parseLastName };

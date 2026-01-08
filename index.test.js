@@ -1,4 +1,4 @@
-const parseLastName = require('./index');
+const { parseLastName } = require('./index');
 
 describe('parseLastName', () => {
   describe('Jr suffix removal', () => {

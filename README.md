@@ -11,7 +11,7 @@ npm install parse-lastname
 ## Usage
 
 ```javascript
-const parseLastName = require('parse-lastname');
+const { parseLastName } = require('parse-lastname');
 
 // Basic usage
 const result = parseLastName('Smith Jr');

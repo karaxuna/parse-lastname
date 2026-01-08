@@ -3,7 +3,7 @@
  * @param {string} lastName - The last name to process
  * @returns {{lastName: string, suffix: string|null}} Object with cleaned lastName and suffix (or null if no suffix found)
  */
-module.exports = function parseLastName(lastName) {
+module.exports.parseLastName = function parseLastName(lastName) {
   if (!lastName || typeof lastName !== 'string') {
     return { lastName: lastName || '', suffix: null };
   }
