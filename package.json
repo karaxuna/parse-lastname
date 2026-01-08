@@ -1,0 +1,26 @@
+{
+  "name": "parse-lastname",
+  "version": "1.0.0",
+  "description": "Parse last names and extract suffixes (Jr, Sr, II, III, IV)",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "lastname",
+    "suffix",
+    "name",
+    "parsing",
+    "jr",
+    "sr"
+  ],
+  "author": {
+    "name": "Kakhaber Bazerashvili",
+    "email": "kaxabernet@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
