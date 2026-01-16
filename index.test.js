@@ -82,6 +82,10 @@ describe('parseLastName', () => {
   });
 
   describe('Roman numeral suffix removal', () => {
+    test('should remove "I" from last name', () => {
+      expect(parseLastName('Kennedy I')).toEqual({ lastName: 'Kennedy', suffix: 'I' });
+    });
+
     test('should remove "II" from last name', () => {
       expect(parseLastName('Kennedy II')).toEqual({ lastName: 'Kennedy', suffix: 'II' });
     });

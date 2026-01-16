@@ -14,27 +14,33 @@ module.exports.parseLastName = function parseLastName(lastName) {
     return { lastName: '', suffix: null };
   }
 
-  // Define suffix patterns (case-insensitive)
-  // Match suffixes at the end of the string, potentially with periods and spaces
-  const suffixPatterns = [
-    // Roman numerals (must come first to match longer ones first)
-    { pattern: /\s+(IV|iv)\.?\s*$/, suffix: 'IV' },
-    { pattern: /\s+(III|iii)\.?\s*$/, suffix: 'III' },
-    { pattern: /\s+(II|ii)\.?\s*$/, suffix: 'II' },
-    // Jr and Sr
-    { pattern: /\s+(Jr|jr|JR|junior|Junior|JUNIOR)\.?\s*$/, suffix: 'Jr' },
-    { pattern: /\s+(Sr|sr|SR|senior|Senior|SENIOR)\.?\s*$/, suffix: 'Sr' },
-  ];
+  // Single regex pattern to match all suffixes
+  const suffixPattern = /\s+(IV|iv|III|iii|II|ii|I|i|Jr|jr|JR|junior|Junior|JUNIOR|Sr|sr|SR|senior|Senior|SENIOR)\.?\s*$/;
 
-  // Try to match each suffix pattern
-  for (const { pattern, suffix } of suffixPatterns) {
-    const match = trimmedName.match(pattern);
-    if (match) {
-      const cleanedLastName = trimmedName.replace(pattern, '').trim();
-      // Only return if there's a valid last name remaining
-      if (cleanedLastName) {
-        return { lastName: cleanedLastName, suffix };
+  const match = trimmedName.match(suffixPattern);
+  if (match) {
+    const cleanedLastName = trimmedName.replace(suffixPattern, '').trim();
+    // Only return if there's a valid last name remaining
+    if (cleanedLastName) {
+      // Normalize the suffix
+      const matchedSuffix = match[1].toUpperCase();
+      let normalizedSuffix;
+
+      if (matchedSuffix === 'IV') {
+        normalizedSuffix = 'IV';
+      } else if (matchedSuffix === 'III') {
+        normalizedSuffix = 'III';
+      } else if (matchedSuffix === 'II') {
+        normalizedSuffix = 'II';
+      } else if (matchedSuffix === 'I') {
+        normalizedSuffix = 'I';
+      } else if (matchedSuffix === 'JR' || matchedSuffix === 'JUNIOR') {
+        normalizedSuffix = 'Jr';
+      } else if (matchedSuffix === 'SR' || matchedSuffix === 'SENIOR') {
+        normalizedSuffix = 'Sr';
       }
+
+      return { lastName: cleanedLastName, suffix: normalizedSuffix };
     }
   }
 
