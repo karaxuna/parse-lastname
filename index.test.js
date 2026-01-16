@@ -211,6 +211,14 @@ describe('parseLastName', () => {
     test('should not return suffix if only suffix with space provided', () => {
       expect(parseLastName(' Jr ')).toEqual({ lastName: 'Jr', suffix: null });
     });
+
+    test('should not remove "I" from start of last name', () => {
+      expect(parseLastName('I Smith')).toEqual({ lastName: 'I Smith', suffix: null });
+    });
+
+    test('should not remove "I" from end of last name if there\'s no space after it', () => {
+      expect(parseLastName('SmithI')).toEqual({ lastName: 'SmithI', suffix: null });
+    });
   });
 
   describe('Complex real-world examples', () => {
