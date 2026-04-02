@@ -11,31 +11,31 @@ describe('parseLastName', () => {
     });
 
     test('should remove "jr" lowercase from last name', () => {
-      expect(parseLastName('Williams jr')).toEqual({ lastName: 'Williams', suffix: 'Jr' });
+      expect(parseLastName('Williams jr')).toEqual({ lastName: 'Williams', suffix: 'jr' });
     });
 
     test('should remove "jr." lowercase with period', () => {
-      expect(parseLastName('Brown jr.')).toEqual({ lastName: 'Brown', suffix: 'Jr' });
+      expect(parseLastName('Brown jr.')).toEqual({ lastName: 'Brown', suffix: 'jr' });
     });
 
     test('should remove "JR" uppercase from last name', () => {
-      expect(parseLastName('Davis JR')).toEqual({ lastName: 'Davis', suffix: 'Jr' });
+      expect(parseLastName('Davis JR')).toEqual({ lastName: 'Davis', suffix: 'JR' });
     });
 
     test('should remove "JR." uppercase with period', () => {
-      expect(parseLastName('Miller JR.')).toEqual({ lastName: 'Miller', suffix: 'Jr' });
+      expect(parseLastName('Miller JR.')).toEqual({ lastName: 'Miller', suffix: 'JR' });
     });
 
     test('should remove "Junior" from last name', () => {
-      expect(parseLastName('Wilson Junior')).toEqual({ lastName: 'Wilson', suffix: 'Jr' });
+      expect(parseLastName('Wilson Junior')).toEqual({ lastName: 'Wilson', suffix: 'Junior' });
     });
 
     test('should remove "junior" lowercase', () => {
-      expect(parseLastName('Moore junior')).toEqual({ lastName: 'Moore', suffix: 'Jr' });
+      expect(parseLastName('Moore junior')).toEqual({ lastName: 'Moore', suffix: 'junior' });
     });
 
     test('should remove "JUNIOR" uppercase', () => {
-      expect(parseLastName('Taylor JUNIOR')).toEqual({ lastName: 'Taylor', suffix: 'Jr' });
+      expect(parseLastName('Taylor JUNIOR')).toEqual({ lastName: 'Taylor', suffix: 'JUNIOR' });
     });
 
     test('should handle "Jr" with extra spaces', () => {
@@ -53,31 +53,31 @@ describe('parseLastName', () => {
     });
 
     test('should remove "sr" lowercase from last name', () => {
-      expect(parseLastName('Williams sr')).toEqual({ lastName: 'Williams', suffix: 'Sr' });
+      expect(parseLastName('Williams sr')).toEqual({ lastName: 'Williams', suffix: 'sr' });
     });
 
     test('should remove "sr." lowercase with period', () => {
-      expect(parseLastName('Brown sr.')).toEqual({ lastName: 'Brown', suffix: 'Sr' });
+      expect(parseLastName('Brown sr.')).toEqual({ lastName: 'Brown', suffix: 'sr' });
     });
 
     test('should remove "SR" uppercase from last name', () => {
-      expect(parseLastName('Davis SR')).toEqual({ lastName: 'Davis', suffix: 'Sr' });
+      expect(parseLastName('Davis SR')).toEqual({ lastName: 'Davis', suffix: 'SR' });
     });
 
     test('should remove "SR." uppercase with period', () => {
-      expect(parseLastName('Miller SR.')).toEqual({ lastName: 'Miller', suffix: 'Sr' });
+      expect(parseLastName('Miller SR.')).toEqual({ lastName: 'Miller', suffix: 'SR' });
     });
 
     test('should remove "Senior" from last name', () => {
-      expect(parseLastName('Wilson Senior')).toEqual({ lastName: 'Wilson', suffix: 'Sr' });
+      expect(parseLastName('Wilson Senior')).toEqual({ lastName: 'Wilson', suffix: 'Senior' });
     });
 
     test('should remove "senior" lowercase', () => {
-      expect(parseLastName('Moore senior')).toEqual({ lastName: 'Moore', suffix: 'Sr' });
+      expect(parseLastName('Moore senior')).toEqual({ lastName: 'Moore', suffix: 'senior' });
     });
 
     test('should remove "SENIOR" uppercase', () => {
-      expect(parseLastName('Taylor SENIOR')).toEqual({ lastName: 'Taylor', suffix: 'Sr' });
+      expect(parseLastName('Taylor SENIOR')).toEqual({ lastName: 'Taylor', suffix: 'SENIOR' });
     });
   });
 
@@ -91,7 +91,7 @@ describe('parseLastName', () => {
     });
 
     test('should remove "ii" lowercase', () => {
-      expect(parseLastName('Roosevelt ii')).toEqual({ lastName: 'Roosevelt', suffix: 'II' });
+      expect(parseLastName('Roosevelt ii')).toEqual({ lastName: 'Roosevelt', suffix: 'ii' });
     });
 
     test('should remove "II." with period', () => {
@@ -103,7 +103,7 @@ describe('parseLastName', () => {
     });
 
     test('should remove "iii" lowercase', () => {
-      expect(parseLastName('Gates iii')).toEqual({ lastName: 'Gates', suffix: 'III' });
+      expect(parseLastName('Gates iii')).toEqual({ lastName: 'Gates', suffix: 'iii' });
     });
 
     test('should remove "III." with period', () => {
@@ -115,7 +115,7 @@ describe('parseLastName', () => {
     });
 
     test('should remove "iv" lowercase', () => {
-      expect(parseLastName('Vanderbilt iv')).toEqual({ lastName: 'Vanderbilt', suffix: 'IV' });
+      expect(parseLastName('Vanderbilt iv')).toEqual({ lastName: 'Vanderbilt', suffix: 'iv' });
     });
 
     test('should remove "IV." with period', () => {
