@@ -1,4 +1,33 @@
 /**
+ * Normalize a suffix string to its standard format
+ * @param {string} suffix - The suffix to normalize
+ * @returns {string|null} Normalized suffix ('Jr', 'Sr', 'I', 'II', 'III', 'IV') or null if invalid
+ */
+module.exports.normalizeSuffix = function (suffix) {
+  if (!suffix || typeof suffix !== 'string') {
+    return null;
+  }
+
+  const trimmedSuffix = suffix.toUpperCase();
+
+  if (trimmedSuffix === 'IV') {
+    return 'IV';
+  } else if (trimmedSuffix === 'III') {
+    return 'III';
+  } else if (trimmedSuffix === 'II') {
+    return 'II';
+  } else if (trimmedSuffix === 'I') {
+    return 'I';
+  } else if (trimmedSuffix === 'JR' || trimmedSuffix === 'JUNIOR') {
+    return 'Jr';
+  } else if (trimmedSuffix === 'SR' || trimmedSuffix === 'SENIOR') {
+    return 'Sr';
+  }
+
+  return null;
+};
+
+/**
  * Remove suffix from last name and return both the cleaned last name and the suffix
  * @param {string} lastName - The last name to process
  * @returns {{lastName: string, suffix: string|null}} Object with cleaned lastName and suffix (or null if no suffix found)
@@ -14,36 +43,20 @@ module.exports.parseLastName = function parseLastName(lastName) {
     return { lastName: '', suffix: null };
   }
 
-  // Single regex pattern to match all suffixes
   const suffixPattern = /\s+(IV|iv|III|iii|II|ii|I|i|Jr|jr|JR|junior|Junior|JUNIOR|Sr|sr|SR|senior|Senior|SENIOR)\.?\s*$/;
 
   const match = trimmedName.match(suffixPattern);
   if (match) {
     const cleanedLastName = trimmedName.replace(suffixPattern, '').trim();
-    // Only return if there's a valid last name remaining
     if (cleanedLastName) {
-      // Normalize the suffix
-      const matchedSuffix = match[1].toUpperCase();
-      let normalizedSuffix;
+      const suffix = match[1].trim();
 
-      if (matchedSuffix === 'IV') {
-        normalizedSuffix = 'IV';
-      } else if (matchedSuffix === 'III') {
-        normalizedSuffix = 'III';
-      } else if (matchedSuffix === 'II') {
-        normalizedSuffix = 'II';
-      } else if (matchedSuffix === 'I') {
-        normalizedSuffix = 'I';
-      } else if (matchedSuffix === 'JR' || matchedSuffix === 'JUNIOR') {
-        normalizedSuffix = 'Jr';
-      } else if (matchedSuffix === 'SR' || matchedSuffix === 'SENIOR') {
-        normalizedSuffix = 'Sr';
-      }
-
-      return { lastName: cleanedLastName, suffix: normalizedSuffix };
+      return {
+        lastName: cleanedLastName,
+        suffix,
+      };
     }
   }
 
-  // No suffix found
   return { lastName: trimmedName, suffix: null };
 };

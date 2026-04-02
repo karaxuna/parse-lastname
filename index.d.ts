@@ -9,13 +9,14 @@ export interface ParsedLastName {
 
   /**
    * The suffix that was found and removed, or null if no suffix was found
-   * Possible values: 'Jr', 'Sr', 'II', 'III', 'IV', or null
+   * Returns the raw matched suffix (e.g., 'Jr', 'jr', 'JR', 'JUNIOR', 'III', 'iii', etc.)
+   * Use normalizeSuffix() to convert to standard format
    */
-  suffix: 'Jr' | 'Sr' | 'II' | 'III' | 'IV' | null;
+  suffix: string | null;
 }
 
 /**
- * Parse a last name and extract any suffix (Jr, Sr, II, III, IV)
+ * Parse a last name and extract any suffix (Jr, Sr, I, II, III, IV)
  * @param lastName - The last name to process
  * @returns Object with cleaned lastName and suffix (or null if no suffix found)
  *
@@ -28,4 +29,19 @@ export interface ParsedLastName {
  */
 declare function parseLastName(lastName: string | null | undefined): ParsedLastName;
 
-export { parseLastName };
+/**
+ * Normalize a suffix string to its standard format
+ * @param suffix - The suffix to normalize
+ * @returns Normalized suffix or null if invalid
+ *
+ * @example
+ * ```typescript
+ * normalizeSuffix('jr'); // 'Jr'
+ * normalizeSuffix('SENIOR'); // 'Sr'
+ * normalizeSuffix('iii'); // 'III'
+ * normalizeSuffix('invalid'); // null
+ * ```
+ */
+declare function normalizeSuffix(suffix: string | null | undefined): 'Jr' | 'Sr' | 'I' | 'II' | 'III' | 'IV' | null;
+
+export { parseLastName, normalizeSuffix };

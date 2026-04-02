@@ -11,7 +11,7 @@ npm install parse-lastname
 ## Usage
 
 ```javascript
-const { parseLastName } = require('parse-lastname');
+const { parseLastName, normalizeSuffix } = require('parse-lastname');
 
 // Basic usage
 const result = parseLastName('Smith Jr');
@@ -39,6 +39,28 @@ Parses a last name, removes suffix, and returns both the cleaned last name and t
 An object with two properties:
 - `lastName` (string): The last name with suffix removed (or original if no suffix found)
 - `suffix` (string|null): The suffix that was removed, normalized to standard format (Jr, Sr, II, III, IV), or null if no suffix was found
+
+### `normalizeSuffix(suffix)`
+
+Normalizes a suffix string to its standard format.
+
+#### Parameters
+
+- `suffix` (string): The suffix to normalize
+
+#### Returns
+
+A normalized suffix string ('Jr', 'Sr', 'I', 'II', 'III', 'IV') or null if the input is not a recognized suffix.
+
+#### Example
+
+```javascript
+normalizeSuffix('jr');      // 'Jr'
+normalizeSuffix('JUNIOR');  // 'Jr'
+normalizeSuffix('senior');  // 'Sr'
+normalizeSuffix('iii');     // 'III'
+normalizeSuffix('invalid'); // null
+```
 
 ## Supported Suffixes
 
