@@ -1,4 +1,4 @@
-const { parseLastName } = require('./index');
+import { parseLastName } from './index';
 
 describe('parseLastName', () => {
   describe('Jr suffix removal', () => {
@@ -189,7 +189,7 @@ describe('parseLastName', () => {
     });
 
     test('should handle non-string input (number)', () => {
-      expect(parseLastName(123)).toEqual({ lastName: 123, suffix: null });
+      expect(parseLastName(123 as unknown as string)).toEqual({ lastName: 123, suffix: null });
     });
 
     test('should handle name with trailing spaces', () => {

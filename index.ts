@@ -1,9 +1,26 @@
 /**
- * Normalize a suffix string to its standard format
- * @param {string} suffix - The suffix to normalize
- * @returns {string|null} Normalized suffix ('Jr', 'Sr', 'I', 'II', 'III', 'IV') or null if invalid
+ * Result of parsing a last name
  */
-module.exports.normalizeSuffix = function (suffix) {
+export interface ParsedLastName {
+  /**
+   * The last name with suffix removed (if any)
+   */
+  lastName: string;
+
+  /**
+   * The suffix that was found and removed, or null if no suffix was found
+   * Returns the raw matched suffix (e.g., 'Jr', 'jr', 'JR', 'JUNIOR', 'III', 'iii', etc.)
+   * Use normalizeSuffix() to convert to standard format
+   */
+  suffix: string | null;
+}
+
+/**
+ * Normalize a suffix string to its standard format
+ * @param suffix - The suffix to normalize
+ * @returns Normalized suffix ('Jr', 'Sr', 'I', 'II', 'III', 'IV') or null if invalid
+ */
+export function normalizeSuffix(suffix: string | null | undefined): 'Jr' | 'Sr' | 'I' | 'II' | 'III' | 'IV' | null {
   if (!suffix || typeof suffix !== 'string') {
     return null;
   }
@@ -25,16 +42,16 @@ module.exports.normalizeSuffix = function (suffix) {
   }
 
   return null;
-};
+}
 
 /**
  * Remove suffix from last name and return both the cleaned last name and the suffix
- * @param {string} lastName - The last name to process
- * @returns {{lastName: string, suffix: string|null}} Object with cleaned lastName and suffix (or null if no suffix found)
+ * @param lastName - The last name to process
+ * @returns Object with cleaned lastName and suffix (or null if no suffix found)
  */
-module.exports.parseLastName = function parseLastName(lastName) {
+export function parseLastName(lastName: string | null | undefined): ParsedLastName {
   if (!lastName || typeof lastName !== 'string') {
-    return { lastName: lastName || '', suffix: null };
+    return { lastName: (lastName as string) || '', suffix: null };
   }
 
   const trimmedName = lastName.trim();
@@ -59,4 +76,4 @@ module.exports.parseLastName = function parseLastName(lastName) {
   }
 
   return { lastName: trimmedName, suffix: null };
-};
+}

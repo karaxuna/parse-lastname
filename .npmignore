@@ -1,8 +1,16 @@
+# Source files
+*.ts
+!*.d.ts
+tsconfig.json
+jest.config.js
+
 # Tests
 *.test.js
+*.test.ts
 coverage/
 
 # Development
+.github/
 .git/
 .gitignore
 .vscode/
