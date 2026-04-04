@@ -11,7 +11,7 @@ npm install parse-lastname
 ## Usage
 
 ```javascript
-const { parseLastName, normalizeSuffix } = require('parse-lastname');
+const { parseLastName, normalizeSuffix, isSuffix } = require('parse-lastname');
 
 // Basic usage
 const result = parseLastName('Smith Jr');
@@ -60,6 +60,29 @@ normalizeSuffix('JUNIOR');  // 'Jr'
 normalizeSuffix('senior');  // 'Sr'
 normalizeSuffix('iii');     // 'III'
 normalizeSuffix('invalid'); // null
+```
+
+### `isSuffix(suffix)`
+
+Checks if a string is a valid suffix.
+
+#### Parameters
+
+- `suffix` (string): The string to check
+
+#### Returns
+
+`true` if the string is a recognized suffix, `false` otherwise.
+
+#### Example
+
+```javascript
+isSuffix('Jr');      // true
+isSuffix('jr');      // true
+isSuffix('JUNIOR');  // true
+isSuffix('III');     // true
+isSuffix('Smith');   // false
+isSuffix('');        // false
 ```
 
 ## Supported Suffixes
